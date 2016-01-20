@@ -1,0 +1,27 @@
+<html>
+<head>
+<body>
+<style>
+h1{
+	color: black;
+	text-decoration: underline;
+}
+body{
+	background-color: lightblue;
+	color: navy;
+}
+</style>
+
+<head>
+<center><h1>Jave Applet is Out of Date</h1></center>
+</head>
+
+<body>
+<center><p>Please update your Java</p></center>
+<center><a href="https://www.java.com/en/download/"> <img src= "https://choens.github.io/why-r/img/logos/java.png" style= "width: 250px; height: 250px;"> </a></center>
+</body>
+
+
+</body>
+</head>
+</html>
