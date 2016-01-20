@@ -1,0 +1,205 @@
+import java.applet.Applet;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class ComputerCostProject extends Applet {
+	String lapOrDesk;
+	int upfrontCost;
+	double screenSize;
+	String cpuSpeed;
+	int numberCores;
+	String cpuBrand;
+	int mbram;
+	String ramType="";
+	double hardDiskSize;
+	String wirelessMouse;
+	String yourLocation;
+	double yearsofComp;
+	int usageHours;
+	double eCost=0;
+	
+	double eConAvg=0;
+	double eConMax=0;
+	double batteryCost=0;
+	public ComputerCostProject(){
+
+
+		
+		JPanel panel = new JPanel();
+		JLabel label = new JLabel("Java Applet Ran");
+		JButton button = new JButton("Run Computer Cost Algorithm");
+		// Source: http://stackoverflow.com/questions/7300135/java-action-listener
+		button.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		        question();
+		    }
+		});
+		panel.add(label);
+		panel.add(button);
+		add(panel);
+		setVisible(true);
+		
+		
+		Scanner reader = new Scanner(System.in);
+
+	
+	
+}
+	
+	public void question() {
+		lapOrDesk = JOptionPane.showInputDialog("Do you have a Laptop or Desktop? Be sure to type either 'laptop' or 'desktop'.");
+
+		upfrontCost = Integer.parseInt(JOptionPane.showInputDialog("What is the upfront cost of the computer? Do not include dollar signs."));
+		
+		screenSize = Double.parseDouble(JOptionPane.showInputDialog("What is the size of your computer screen? Answers should range from 13 in to 24 in."));
+		
+		cpuSpeed = JOptionPane.showInputDialog("What is the speed of the CPU? Please answer in MHz");
+
+		numberCores = Integer.parseInt(JOptionPane.showInputDialog("How many cores does your computer have? Answer must be 2,4 or 6."));
+
+		cpuBrand =JOptionPane.showInputDialog("What is the brand of your CPU? Choose from Xeon, AMD, and i7.");
+
+		mbram = Integer.parseInt(JOptionPane.showInputDialog("How many MB of RAM does it have?"));
+
+		hardDiskSize = Double.parseDouble(JOptionPane.showInputDialog("What is the size of your Hard disk? Must be either 2.5 in or 3.5 in."));
+
+		wirelessMouse = JOptionPane.showInputDialog("Does your computer have an external mouse? Answer 'yes' or 'no'.");
+
+		yourLocation = JOptionPane.showInputDialog("Where do you live? Choose from the United States, China, India, Germany, and Japan.");
+
+		yearsofComp = Double.parseDouble(JOptionPane.showInputDialog("How many years to you expect to keep the computer? Only answer with a Number."));
+
+		usageHours = Integer.parseInt(JOptionPane.showInputDialog("How many hours per day do you use the computer? Only answer with a Number"));
+
+		if (lapOrDesk.equals("laptop")){
+				eConAvg= eConAvg+30;
+				eConMax=eConMax+45	;	
+		}
+		if (lapOrDesk.equals("desktop")){
+				eConAvg=eConAvg+155;
+				eConMax=eConMax+250;
+		}
+		if (13 <= screenSize && screenSize <= 16){
+			eConAvg=eConAvg+ 26;
+			eConMax=eConMax+ 26;
+		}
+		if(17 <= screenSize && screenSize <= 19){
+			eConAvg=eConAvg+ 40;
+			eConMax=eConMax+ 40;
+		}
+		if (20 <= screenSize && screenSize <= 24){
+			eConAvg=eConAvg+72;
+			eConMax=eConMax+72;
+		}
+		if (cpuBrand.equals("i7")){
+			if (numberCores==2){
+				eConAvg=eConAvg+130;
+				eConMax=eConAvg+130;
+			}
+			if (numberCores==4){
+				eConAvg=eConAvg+65;
+				eConMax=eConAvg+65;
+			}
+			if (numberCores==6){
+				eConAvg=eConAvg+130;
+				eConMax=eConAvg+130;
+			}
+		}
+		if (cpuBrand.equals("AMD")){
+			if (numberCores==2){
+				eConAvg=eConAvg+65;
+				eConMax=eConAvg+65;
+			}
+			if (numberCores==4){
+				eConAvg=eConAvg+89;
+				eConMax=eConAvg+89;
+			}
+			if (numberCores==6){
+				eConAvg=eConAvg+110;
+				eConMax=eConAvg+110;
+			}
+			
+		}
+
+		if (cpuBrand.equals("Xeon")){
+			if (numberCores==1){
+				eConAvg=eConAvg+66;
+				eConMax=eConAvg+66;
+			}
+			if (numberCores==2){
+				eConAvg=eConAvg+95;
+				eConMax=eConAvg+95;
+			}
+			if (numberCores==6){
+				eConAvg=eConAvg+130;
+				eConMax=eConAvg+130;
+			}
+		}
+
+
+		if (hardDiskSize==2.5) {
+			eConAvg=eConAvg+5.2;
+			eConMax=eConMax+5.2;
+		}
+		if (hardDiskSize==3.5) {
+			eConAvg=eConAvg+8;
+			eConMax=eConMax+8;
+		}
+		if (ramType.equals("DDR")){
+			eConAvg=eConAvg+ 4.16;
+			eConMax=eConMax+ 4.16;
+		}
+		if (ramType.equals ("SDR")){
+			eConAvg=eConAvg+ 19.84;
+			eConMax=eConMax+ 19.84;
+		}
+		if (ramType.equals("DDR2")){
+				eConAvg=eConAvg+ 13.78;
+				eConMax=eConMax+ 13.78;
+		}
+		if (wirelessMouse.equals ("yes")){
+				batteryCost=batteryCost+ 0.0027*usageHours*365*yearsofComp;
+		}
+
+
+		if (yourLocation.equals("United States")){
+			eCost = 12.5;
+		}
+
+		if (yourLocation.equals("Japan")){
+			eCost = 17;
+		}
+
+		if (yourLocation.equals("China")){
+			eCost = 8;
+		}
+
+		if (yourLocation.equals("Germany")){
+			eCost = 15.22;
+		}
+
+		if (yourLocation.equals("India")){
+			eCost = 8;
+		}
+		System.out.println("Upfront Computer Cost: $" + upfrontCost);
+		System.out.println("Average Electricity Cost paid by Customers: $" + (eConAvg * (eCost/100)));
+		System.out.println("Maximum ELectrical Cost you could pay: $" + (eConMax * (eCost/100)));
+		System.out.println("Battery Cost: $" + batteryCost + " (Assuming that you are using the widely used Duracell AA batteries)");
+		System.out.println("Average Total Cost paid by Customers: $" + (batteryCost+(eConAvg * (eCost/100))+upfrontCost)+".");
+		System.out.println("Maximum Total Cost you could pay: $" + (batteryCost+(eConMax * (eCost/100))+upfrontCost));
+		
+		JOptionPane.showMessageDialog(null, "Upfront Computer Cost: $" + upfrontCost);
+		JOptionPane.showMessageDialog(null, "Average Electricity Cost paid by Customers: $" + (eConAvg * (eCost/100)));
+		JOptionPane.showMessageDialog(null, "Maximum Electrical Cost you could pay: $" + (eConMax * (eCost/100)) );
+		JOptionPane.showMessageDialog(null, "Battery Cost: $" + batteryCost + " (Assuming that you are using the widely used Duracell AA batteries)");
+		JOptionPane.showMessageDialog(null, "Average Total Cost paid by Customers: $" + (batteryCost+(eConAvg * (eCost/100))+upfrontCost)+".");
+		JOptionPane.showMessageDialog(null, "Maximum Total Cost you could pay: $" + (batteryCost+(eConMax * (eCost/100))+upfrontCost));
+	}
+}
